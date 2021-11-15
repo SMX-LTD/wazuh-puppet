@@ -36,18 +36,12 @@
 
   <!-- Locally defined rule overrides. -->
 <% if ! @local_rules.nil? and @local_rules.is_a?(Array) -%>
-<% @local_rules.each do |rule| -%>
+<% @local_rules.sort.each do |rule| -%>
   <rule id="<%= rule['id'] %>" level="<%= rule['level'] %>">
-<% if rule['if_sid'] %>    <if_sid><%= rule['if_sid'] %></if_sid>
-<% end -%>
-<% if rule['srcip'] %>    <srcip><%= rule['srcip'] %></srcip>
-<% end -%>
-<% if rule['user'] %>    <user><%= rule['user'] %></user>
-<% end -%>
-<% if rule['group'] %>    <group><%= rule['group'] %></group>
-<% end -%>
-<% if rule['description'] %>    <description><%= rule['description'] %></description>
-<% end -%>
+<% rule.sort.each do |r_key,r_value| -%>
+<% if r_key != 'id' and r_key != 'level' -%>
+    <<%= r_key %>><%= r_value %></<%= r_key %>>
+<% end -%><% end -%>
   </rule>
 <% end -%><% end -%>
 
