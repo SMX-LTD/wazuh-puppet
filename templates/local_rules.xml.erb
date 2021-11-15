@@ -36,9 +36,9 @@
 
   <!-- Locally defined rule overrides. -->
 <% if ! @local_rules.nil? and @local_rules.is_a?(Array) -%>
-<% @local_rules.sort.each do |rule| -%>
+<% @local_rules.each do |rule| -%>
   <rule id="<%= rule['id'] %>" level="<%= rule['level'] %>">
-<% rule.sort.each do |r_key,r_value| -%>
+<% rule.each do |r_key,r_value| -%>
 <% if r_key != 'id' and r_key != 'level' -%>
     <<%= r_key %>><%= r_value %></<%= r_key %>>
 <% end -%><% end -%>
