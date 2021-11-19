@@ -1,4 +1,6 @@
 # Wazuh - Filebeat configuration file
+# Managed by Puppet
+
 filebeat.modules:
   - module: wazuh
     alerts:
@@ -6,10 +8,10 @@ filebeat.modules:
     archives:
       enabled: false
 
-setup.template.json.enabled: true
+setup.template.json.enabled: <%= @filebeat_setup_template_enabled %>
 setup.template.json.path: "/etc/filebeat/wazuh-template.json"
 setup.template.json.name: "wazuh"
-setup.template.overwrite: true
+setup.template.overwrite: <%= @filebeat_setup_template_overwrite %>
 
 # Send events directly to Elasticsearch
 output.elasticsearch:
@@ -31,6 +33,8 @@ output.elasticsearch:
 
 <% if not @filebeat_setup_ilm_enabled.nil? %>
 setup.ilm.enabled: <%= @filebeat_setup_ilm_enabled %>
+setup.ilm.check_exists: <%= @filebeat_setup_ilm_check_exists %>
+setup.ilm.overwrite: <%= @filebeat_setup_ilm_overwrite %>
 <% end -%>
 
 <% if @filebeat_log_level -%>
@@ -49,3 +53,11 @@ logging.files:
   permissions: 0644
   interval: <%= @filebeat_log_interval %>
 <% end -%>
+
+# Custom settings
+<%- @filebeat_settings.each do |k_key,k_value| -%>
+<%= k_key %>: <%= k_value %>
+<%- end -%>
+
+# END
+

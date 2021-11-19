@@ -15,12 +15,17 @@ class wazuh::filebeat (
   String $filebeat_ssl_verification = 'full',
   Integer $filebeat_elastic_worker = 1,
   Optional[Boolean] $filebeat_setup_ilm_enabled = undef,
+  Boolean $filebeat_setup_ilm_check_exists = false,
+  Boolean $filebeat_setup_ilm_overwrite = false,
   String $wazuh_app_version = '4.3.0_7.10.0',
   String $wazuh_extensions_version = 'v4.3.0',
   String $wazuh_filebeat_module = 'wazuh-filebeat-0.1.tar.gz',
   Optional[String] $filebeat_log_level = undef,
   Integer $filebeat_log_keep = 7,
   String $filebeat_log_interval = '1d',
+  Hash $filebeat_settings = {},
+  Boolean $filebeat_setup_template_enabled = true,
+  Boolean $filebeat_setup_template_overwrite = true,
 ){
 
   class {'wazuh::repo_elastic':}
