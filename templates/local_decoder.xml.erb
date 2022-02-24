@@ -28,7 +28,7 @@
 <% if ! @local_decoders.nil? and @local_decoders.is_a?(Array) -%>
 <% @local_decoders.each do |decoder| -%>
   <decoder name="<%= decoder['name'] %>">
-<% dkeys = ['parent','prematch','regexp','order','plugin_decoder','program_name'] -%>
+<% dkeys = ['parent','prematch','regex','order','plugin_decoder','program_name'] -%>
 <% dkeys.each do |thiskey| -%>
 <% if decoder[thiskey] %>    <<%= thiskey %>><%= decoder[thiskey] %></<%= thiskey %>>
 <% end -%>
