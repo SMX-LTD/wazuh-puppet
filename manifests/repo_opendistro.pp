@@ -34,7 +34,7 @@ class wazuh::repo_opendistro (
       }
       'RedHat' : {
           case $::os[name] {
-            /^(CentOS|RedHat|OracleLinux|Fedora|Amazon)$/: {
+            /^(CentOS|RedHat|OracleLinux|Fedora|Amazon|AlmaLinux)$/: {
               if ( $::operatingsystemrelease =~ /^5.*/ ) {
                 $baseurl  = 'https://d3g5vo6xdbdb9a.cloudfront.net/yum/noarch/'
                 $gpgkey   = 'https://d3g5vo6xdbdb9a.cloudfront.net/GPG-KEY-opendistroforelasticsearch'

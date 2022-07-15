@@ -34,7 +34,7 @@ class wazuh::repo_elastic_oss (
       }
       'RedHat' : {
           case $::os[name] {
-            /^(CentOS|RedHat|OracleLinux|Fedora|Amazon)$/: {
+            /^(CentOS|RedHat|OracleLinux|Fedora|Amazon|AlmaLinux)$/: {
               if ( $::operatingsystemrelease =~ /^5.*/ ) {
                 $baseurl  = 'https://artifacts.elastic.co/packages/oss-7.x/yum'
                 $gpgkey   = 'https://artifacts.elastic.co/GPG-KEY-elasticsearch'
