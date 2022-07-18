@@ -320,7 +320,9 @@ class wazuh::agent (
     case $::operatingsystem {
       'RedHat', 'OracleLinux':{
         $apply_template_os = 'rhel'
-        if ( $::operatingsystemrelease     =~ /^7.*/ ){
+        if ( $::operatingsystemrelease     =~ /^8.*/ ){
+          $rhel_version = '8'
+        }elsif ( $::operatingsystemrelease =~ /^7.*/ ){
           $rhel_version = '7'
         }elsif ( $::operatingsystemrelease =~ /^6.*/ ){
           $rhel_version = '6'
@@ -336,7 +338,7 @@ class wazuh::agent (
         }
       }'Amazon':{
         $apply_template_os = 'amazon'
-      }'CentOS','Centos','centos','AlmaLinux':{
+      }'CentOS','Centos','centos','AlmaLinux','alma':{
         $apply_template_os = 'centos'
       }
       default: { fail('OS not supported') }
